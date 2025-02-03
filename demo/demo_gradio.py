@@ -57,7 +57,7 @@ def demo_with_text(video: gr.Video, text: str, threshold: float, max_num_objects
     fps = cap.get(cv2.CAP_PROP_FPS)
     ti = 0
     # only an estimate
-    with torch.cuda.amp.autocast(enabled=cfg['amp']):
+    with torch.amp.autocast("cuda", enabled=cfg['amp']):
         with tqdm(total=int(cap.get(cv2.CAP_PROP_FRAME_COUNT))) as pbar:
             while (cap.isOpened()):
                 ret, frame = cap.read()
@@ -131,7 +131,7 @@ def demo_automatic(video: gr.Video, threshold: float, points_per_side: int, max_
     fps = cap.get(cv2.CAP_PROP_FPS)
     ti = 0
     # only an estimate
-    with torch.cuda.amp.autocast(enabled=cfg['amp']):
+    with torch.amp.autocast("cuda", enabled=cfg['amp']):
         with tqdm(total=int(cap.get(cv2.CAP_PROP_FRAME_COUNT))) as pbar:
             while (cap.isOpened()):
                 ret, frame = cap.read()

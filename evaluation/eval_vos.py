@@ -134,7 +134,7 @@ def main():
             first_mask_loaded = False
 
             for ti, data in enumerate(loader):
-                with torch.cuda.amp.autocast(enabled=args.amp):
+                with torch.amp.autocast("cuda", enabled=args.amp):
                     image = data['rgb'].cuda()[0]
                     mask = data.get('mask')
                     if mask is not None:

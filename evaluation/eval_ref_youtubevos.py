@@ -131,7 +131,7 @@ def main():
                                                   image_feature_store=image_feature_store)
 
                     for ti, data in enumerate(loader):
-                        with torch.cuda.amp.autocast(enabled=args.amp):
+                        with torch.amp.autocast("cuda", enabled=args.amp):
                             image = data['rgb'].cuda()[0]
                             info = data['info']
                             frame = info['frame'][0]

@@ -121,7 +121,7 @@ def main():
                                            object_manager=processor.object_manager)
 
                 for ti, data in enumerate(loader):
-                    with torch.cuda.amp.autocast(enabled=args.amp):
+                    with torch.amp.autocast("cuda", enabled=args.amp):
                         image = data['rgb'].cuda()[0]
                         info = data['info']
                         frame = info['frame'][0]

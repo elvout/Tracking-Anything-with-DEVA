@@ -31,7 +31,7 @@ class DEVA(nn.Module):
         self.mask_decoder = MaskDecoder(self.value_dim)
 
     def aggregate(self, prob: torch.Tensor, dim: int) -> torch.Tensor:
-        with torch.cuda.amp.autocast(enabled=False):
+        with torch.amp.autocast("cuda", enabled=False):
             prob = prob.float()
             new_prob = torch.cat([torch.prod(1 - prob, dim=dim, keepdim=True), prob],
                                  dim).clamp(1e-7, 1 - 1e-7)
